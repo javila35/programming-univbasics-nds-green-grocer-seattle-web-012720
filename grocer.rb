@@ -30,12 +30,18 @@ def consolidate_cart(cart)
 end
 
 def apply_coupons(cart, coupons)
-  index = 0 
+  
   #iterating through the coupons structure
+  index = 0 
   while index < coupons.length
-  #finding if our coupon item is in the cart.
+  
+  #finding if our coupon item is in the cart. if it does exist in the cart this returns truth, if not returns nil/falsey.
   cart_item = find_item_by_name_in_collection(coupons[index][:item], cart)
+  
+  #checking to see if the coupon item exists in the original cart.
   couponed_item_name = "#{coupons[index][:item]} W/COUPON"
+  
+  #check if item with the coupon already exists.
   cart_item_with_coupon = find_item_by_name_in_collection(couponed_item_name, cart)
   if cart_item && cart_item[:count] >= coupons[index][:num]
     if cart_item_with_coupon 
